@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.kihwangkwon.businesslogic.draft.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -15,10 +16,6 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
 
-import com.kihwangkwon.businesslogic.draft.domain.DraftProcess;
-import com.kihwangkwon.businesslogic.draft.domain.DraftRequest;
-import com.kihwangkwon.businesslogic.draft.domain.DraftRequestType;
-import com.kihwangkwon.businesslogic.draft.domain.DraftTeam;
 import com.kihwangkwon.businesslogic.draft.repository.DraftBidRepository;
 import com.kihwangkwon.businesslogic.draft.repository.DraftInfoRepository;
 import com.kihwangkwon.businesslogic.draft.repository.DraftTeamRepository;
@@ -30,8 +27,6 @@ import com.kihwangkwon.socket.SocketHandler;
 import lombok.RequiredArgsConstructor;
 
 import com.google.gson.Gson;
-import com.kihwangkwon.businesslogic.draft.domain.DraftBid;
-import com.kihwangkwon.businesslogic.draft.domain.DraftInfo;
 
 @RequiredArgsConstructor
 @Service
@@ -56,7 +51,8 @@ public class DraftServiceImpl implements DraftService {
 	
 	private Map<String,List> draftList;
 
-	
+	private boolean onProgress;
+
 	private int timeGuide = 15;
 	
 	private int timeRemain;
@@ -219,7 +215,12 @@ public class DraftServiceImpl implements DraftService {
 		
 		return result;
 	}
-	
+
+	@Override
+	public void setDraftProgress(boolean start) {
+		this.onProgress = start;
+	}
+
 	//소켓 연결시 접속자 확인용
 	private WebSocketMessage setLoginSession(WebSocketMessage<?> webSocketMessage) {
 		return null;
@@ -243,7 +244,14 @@ public class DraftServiceImpl implements DraftService {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
+	@Override
+	public DraftResult placeBid(DraftBid draftBid) {
+		// 더 이상 비드가 불가능한 상황인지 검사
+		// 남은 시간 검사
+		return null;
+	}
+
 	private boolean biddability(DraftBid draftBid) {
 		boolean result = false;
 		
