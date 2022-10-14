@@ -15,14 +15,17 @@ import org.springframework.web.socket.WebSocketSession;
 
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
-@Component
+import javax.websocket.server.ServerEndpoint;
+
+//@RequiredArgsConstructor
+//@Component
+
 public class SocketHandler implements WebSocketHandler{
 	
 	private static List<WebSocketSession> socketList = new ArrayList<>();
 	private static Map<String,String> loginSessionIds;
 	private static Map loginIdMap;
-	private final SocketService socketService;
+//	private final SocketService socketService;
 	
 	public static List getSocketList() {
 		return socketList;

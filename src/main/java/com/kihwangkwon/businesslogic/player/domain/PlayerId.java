@@ -5,16 +5,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @ToString
 @Entity
 @Getter
 @Setter
-@Builder
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@Builder
 public class PlayerId {
 	
 	@Id
@@ -26,5 +25,8 @@ public class PlayerId {
 	private String playerId;
 	private String playerName;
 	private String playerNameKorean;
-	
+
+	public PlayerId() {
+
+	}
 }

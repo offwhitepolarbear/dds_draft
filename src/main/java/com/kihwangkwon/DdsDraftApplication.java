@@ -25,16 +25,17 @@ public class DdsDraftApplication {
 	private static String getPropertiesLocation() {
 
 		String propertiesLocation = null;
-
-		final String windowPropertiesLocation = "spring.config.location="
-				+ "C:\\sts-4.5.1.RELEASE\\yml\\DDSCrawling\\application.yml"
+		String locationPrefix = "spring.config.location=";
+		String locationSuffix = "application.yml";
+		final String windowPropertiesLocation = "C:\\sts-4.5.1.RELEASE\\yml\\DDSCrawling\\"
 		// +","
 		// +"classpath:/application.yml"
 		;
 
-		final String linuxPorpertiesLocation = "spring.config.location="
-				+ "/home/ec2-user/app/00config/DDSCrawling/application.yml" + "," + "classpath:/application.yml";
-		;
+		final String linuxPorpertiesLocation =  "/home/ec2-user/app/00config/DDSCrawling/application.yml"
+												+ "," + "classpath:/application.yml";
+
+		final String macPropertiesLocation = "/Users/kihwangkwon/Documents/GitHub/config/";
 
 		String os = System.getProperty("os.name");
 
@@ -44,7 +45,11 @@ public class DdsDraftApplication {
 		if (os.contains("Linux")) {
 			propertiesLocation = linuxPorpertiesLocation;
 		}
+		if (os.contains("Mac OS")){
+			propertiesLocation = macPropertiesLocation;
+		}
 
+		propertiesLocation = locationPrefix + propertiesLocation + locationSuffix;
 		return propertiesLocation;
 	}
 

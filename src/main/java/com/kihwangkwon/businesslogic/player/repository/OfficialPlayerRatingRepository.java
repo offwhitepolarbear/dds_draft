@@ -9,6 +9,9 @@ import com.kihwangkwon.businesslogic.player.domain.OfficialPlayerRating;
 
 public interface OfficialPlayerRatingRepository extends JpaRepository<OfficialPlayerRating, Long> {
 	List<OfficialPlayerRating> findBySeason(int season, Sort sort);
+
+	OfficialPlayerRating findBySeasonAndPlayerId(int season, String playerId);
+
 	List<OfficialPlayerRating> findBySeasonAndPosition(int season, String position);
 
 }

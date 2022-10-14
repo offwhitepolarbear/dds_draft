@@ -2,7 +2,7 @@ var host_url_full = window.location.href;
 
 host_url_full = host_url_full.split('/');
 
-var socket_url = "ws://"+host_url_full[2]+"/socket";
+const socket_url = "ws://"+host_url_full[2]+"/socket";
 
 var info_uri = window.location.pathname;
 
@@ -86,9 +86,10 @@ function socket_connect(gm_info){
 
 	// 웹소켓 메시지 이벤트
 	websocket.onmessage = function (evt) {
-		 console.log("뭔가옴"+evt);
-		 console.log(evt);
+		console.log("웹소켓 메세지 도착");
+		message_handler(evt)
 	};
+
 	// 웹소켓 에러 이벤트
 	websocket.onerror = function (evt) {
 		 console.log("에러남"+evt);
@@ -99,4 +100,14 @@ function socket_connect(gm_info){
 	};
 }
 
+
+function message_handler(message){
+	var message_json = JSON.parse(message.data)
+	var message_type = message_json.socketMessageType
+	var message_object = message_json.object
+	console.log(message_type)
+	if (message_type == "PLACE_BID"){
+		adjust_place_bid_result(message_object)
+	}
+}
 // var websocket = new WebSocket(socket_url);
