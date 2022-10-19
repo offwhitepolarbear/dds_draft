@@ -1,20 +1,18 @@
 package com.kihwangkwon.businesslogic.draft.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import com.kihwangkwon.businesslogic.draft.domain.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.kihwangkwon.businesslogic.draft.repository.DraftResultRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.TextMessage;
-import org.springframework.web.socket.WebSocketMessage;
-import org.springframework.web.socket.WebSocketSession;
 
 import com.kihwangkwon.businesslogic.draft.repository.DraftBidRepository;
 import com.kihwangkwon.businesslogic.draft.repository.DraftInfoRepository;
@@ -22,7 +20,6 @@ import com.kihwangkwon.businesslogic.draft.repository.DraftTeamRepository;
 import com.kihwangkwon.businesslogic.draftchat.service.DraftChatService;
 import com.kihwangkwon.businesslogic.player.domain.OfficialPlayerRating;
 import com.kihwangkwon.businesslogic.player.repository.OfficialPlayerRatingRepository;
-import com.kihwangkwon.socket.SocketHandler;
 
 import lombok.RequiredArgsConstructor;
 
@@ -36,6 +33,7 @@ public class DraftServiceImpl implements DraftService {
 	private final DraftBidRepository draftBidRepository;
 	private final DraftTeamRepository draftTeamRepository;
 	private final DraftInfoRepository draftInfoRepository;
+	private final DraftResultRepository draftResultRepository;
 	private final OfficialPlayerRatingRepository officialPlayerRatingRepository;
 	
 	
@@ -221,23 +219,6 @@ public class DraftServiceImpl implements DraftService {
 		this.onProgress = start;
 	}
 
-	//소켓 연결시 접속자 확인용
-	private WebSocketMessage setLoginSession(WebSocketMessage<?> webSocketMessage) {
-		return null;
-	}
-	
-	//소켓 연결해제시 접속자 처리용
-	private WebSocketMessage removeLoginSession(WebSocketMessage<?> webSocketMessage) {
-		return null;
-	}
-	
-	private void sendToAllSocket(WebSocketMessage<?> webSocketMessage) throws Exception {
-		List<WebSocketSession> socketList = SocketHandler.getSocketList();
-		for(WebSocketSession session:socketList) {
-			session.sendMessage(webSocketMessage);
-		}
-		
-	}
 
 	@Override
 	public boolean logout(DraftTeam draftTeam) {
@@ -249,6 +230,10 @@ public class DraftServiceImpl implements DraftService {
 	public DraftResult placeBid(DraftBid draftBid) {
 		// 더 이상 비드가 불가능한 상황인지 검사
 		// 남은 시간 검사
+		ModelMapper modelMapper = new ModelMapper();
+		DraftResult draftResult = modelMapper.map(draftBid, DraftResult.class);
+//		draftResult.set
+
 		return null;
 	}
 

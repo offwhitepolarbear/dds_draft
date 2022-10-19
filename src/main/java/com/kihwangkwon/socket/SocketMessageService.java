@@ -4,17 +4,15 @@ import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.annotations.JsonAdapter;
 import com.kihwangkwon.socket.domain.SocketMessageType;
 import com.kihwangkwon.socket.domain.SocketResponseDomain;
-import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.stereotype.Service;
 
 @Service
 public class SocketMessageService {
  	SocketEndPoint socketEndPoint;
 
-	 public void tt(SocketMessageType socketMessageType, Object message){
+	 public void sendMessageToAll(SocketMessageType socketMessageType, Object message){
 		 String jsonString = null;
 
 		 SocketResponseDomain socketResponseDomain = new SocketResponseDomain();

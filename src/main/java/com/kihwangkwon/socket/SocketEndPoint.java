@@ -18,6 +18,7 @@ public class SocketEndPoint {
     public void onOpen(Session session) {
         onlineCount++;
         subscribers.add(session);
+        System.out.println(session.getId());
         System.out.println("OnOpen:" + onlineCount);
     }
 
@@ -30,8 +31,8 @@ public class SocketEndPoint {
 
     @OnMessage
     public void onMessage(String message, Session session) {
-//        System.out.println("OnMessage:" + message);
-//        broadcast(message);
+        System.out.println(message);
+        System.out.println(session.getId());
     }
 
     @OnError

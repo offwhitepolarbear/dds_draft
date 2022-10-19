@@ -6,7 +6,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
-import com.kihwangkwon.businesslogic.draft.domain.DraftSortEnum;
+import com.kihwangkwon.businesslogic.draft.domain.enumerate.DraftSortEnum;
 
 @Service
 public class DraftSortService {

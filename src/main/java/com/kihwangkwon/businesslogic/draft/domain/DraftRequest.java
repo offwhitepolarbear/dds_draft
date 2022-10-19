@@ -1,5 +1,6 @@
 package com.kihwangkwon.businesslogic.draft.domain;
 
+import com.kihwangkwon.businesslogic.draft.domain.enumerate.DraftRequestType;
 import com.kihwangkwon.businesslogic.draftchat.domain.DraftChat;
 
 import lombok.Getter;

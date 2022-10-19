@@ -24,5 +24,6 @@ public class DraftTeam {
 	private String teamName;
 	private String gmName;
 	private String password;
+	private boolean gm;
 	private boolean biddable;
 }
