@@ -9,15 +9,19 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class DraftProcessService {
+public class DraftSequenceService {
 
     private final SocketMessageService socketMessageService;
     private final DraftBidService draftBidService;
+
+    private final DraftInfoService draftInfoService;
+
+    private DraftInfo draftInfo;
+
     private int timeLeft;
 
     private boolean onDraft;
 
-    private DraftInfo draftInfo;
 
     public void draftProcessor() throws InterruptedException {
         if(onDraft){
@@ -35,9 +39,6 @@ public class DraftProcessService {
         }
     }
 
-    public int getTimeLeft(){
-        return this.timeLeft;
-    }
 
     public void handleBid(DraftBid draftBid){
         if (draftBidService.checkBidapproval(draftBid)){
@@ -62,6 +63,14 @@ public class DraftProcessService {
         // 시간 리셋
         setTimeLeft(10);
         draftProcessor();
+    }
+
+    public void setDraftInfo(int season){
+        this.draftInfo = draftInfoService.findDraftInfo(season);
+    }
+
+    public int getTimeLeft(){
+        return this.timeLeft;
     }
 
     public void setTimeLeft(int timeLeft) {

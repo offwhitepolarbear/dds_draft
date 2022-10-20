@@ -3,9 +3,7 @@ package com.kihwangkwon.businesslogic.draft.service;
 import com.kihwangkwon.businesslogic.draft.domain.DraftBid;
 import com.kihwangkwon.businesslogic.draft.domain.DraftResult;
 import com.kihwangkwon.businesslogic.draft.repository.DraftBidRepository;
-import com.kihwangkwon.socket.SocketMessageService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +16,17 @@ public class DraftBidService {
 
     private final DraftResultService draftResultService;
 
+    private final DraftNomianteService draftNomianteService;
+
     public DraftBid placeBid(DraftBid draftBid){
+        draftBid = draftBidRepository.save(draftBid);
+        return draftBid;
+    }
+
+    public DraftBid successBid(DraftBid draftBid){
+        draftBid.setApproval(true);
+        draftBid = draftBidRepository.save(draftBid);
+        draftNomianteService.updateNominateStatus(draftBid);
         return draftBid;
     }
 
@@ -40,5 +48,6 @@ public class DraftBidService {
 //        draftBid = draftBidRepository.findBySeason(season, Sort.sort());
         return draftBid;
     }
+
 
 }
