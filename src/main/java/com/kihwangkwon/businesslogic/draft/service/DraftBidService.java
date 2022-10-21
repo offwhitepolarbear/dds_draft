@@ -1,6 +1,7 @@
 package com.kihwangkwon.businesslogic.draft.service;
 
 import com.kihwangkwon.businesslogic.draft.domain.DraftBid;
+import com.kihwangkwon.businesslogic.draft.domain.DraftNominate;
 import com.kihwangkwon.businesslogic.draft.domain.DraftResult;
 import com.kihwangkwon.businesslogic.draft.repository.DraftBidRepository;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +33,15 @@ public class DraftBidService {
 
     public boolean checkBidapproval(DraftBid draftBid){
         boolean result = false;
+        boolean checkNominated = false;
+        boolean checkPrice = false;
+        boolean checkPlayerSlot = false;
+
         // 선수가 현재 비딩 대상인지 확인
+        DraftNominate draftNominate = draftNomianteService.findNominateByBid(draftBid);
+        if (draftNominate != null){
+
+        }
 
         // 팀 잔여 자리 체크
         int season = draftBid.getSeason();
@@ -41,6 +50,10 @@ public class DraftBidService {
         draftBid.getBidTeam();
 
         // 금액 체크
+
+        if(checkNominated && checkPlayerSlot && checkPrice){
+            result = true;
+        }
         return result;
     }
     public DraftBid getLastBid(int Season){
@@ -49,5 +62,9 @@ public class DraftBidService {
         return draftBid;
     }
 
-
+    private DraftBid findBiggestBid(DraftBid draftBid){
+        DraftBid draftBidResult = null;
+//        draftBidRepository.findBySeason()
+        return draftBidResult;
+    }
 }
