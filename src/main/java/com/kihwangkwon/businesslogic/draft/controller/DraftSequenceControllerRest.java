@@ -2,23 +2,40 @@ package com.kihwangkwon.businesslogic.draft.controller;
 
 import com.kihwangkwon.businesslogic.draft.service.DraftSequenceService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/draft/process")
 public class DraftSequenceControllerRest {
+
     private final DraftSequenceService draftSequenceService;
 
-    @PostMapping("/break")
-    private void changeDraftProcessStatus(){
 
+    @PostMapping("/draftInfo/{season}")
+    private void changeDraftProcessStatus(@PathVariable String season){
+        draftSequenceService.setDraftInfoBySeason(Integer.parseInt(season));
     }
 
-    @RequestMapping("/timeLeft/{}")
-    private void setDraftTimeManually(){
-        draftSequenceService.setTimeLeft(2);
+    @PostMapping("/starter")
+    public void draftProcessStarter(){
+        draftSequenceService.setOnDraft(true);
+    }
+
+    @PostMapping("/break")
+    public void draftProcessBreaker(){
+        draftSequenceService.setOnDraft(false);
+    }
+
+
+    @GetMapping("/timeLeft")
+    public int getLeftTime(){
+        return draftSequenceService.getTimeLeft();
+    }
+
+    @RequestMapping("/timeLeft/{time}")
+    public void setDraftTimeManually(@PathVariable String time) {
+        int timeLeft = Integer.parseInt(time);
+        draftSequenceService.setTimeLeft(timeLeft);
     }
 }

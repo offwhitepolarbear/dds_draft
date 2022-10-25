@@ -15,6 +15,5 @@ public class DraftController {
 		return "draft/draft";
 	
 	}
-	
 
 }

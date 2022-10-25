@@ -25,6 +25,7 @@ public class DraftBid extends BaseTimeEntity{
 	private int pick;
 	private String playerId;
 	private String bidTeam;
+	private String bidPlayer;
 	private int bidPrice;
 	private boolean nominate;
 	private boolean approval;

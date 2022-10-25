@@ -53,8 +53,12 @@ function loginCheck(response){
 		// 웹 소켓 연결
 		socket_connect(gm_info)
 		// 페이지 들어왔을 때 필요한 정보들 가져오기
-		
-		
+
+		// 드래프트 기본 정보
+		get_draft_info()
+		// 전체 로스터 id 매핑
+		get_all_player()
+
 		// 팀 정보
 		get_draft_teams_from_api()
 		

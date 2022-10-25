@@ -25,6 +25,27 @@ function set_draft_teams(teams){
 	
 }
 
+function get_all_player(){
+	var url = '/rest/player/getAllPlayer/' + gm_info.season;
+	fetch(url,
+		{
+			method: 'GET',
+			headers:{
+				'Content-Type': 'application/json'
+			}
+		}
+	)
+		.then(res => res.json())
+		.then(response_json => set_all_player_map(response_json))
+}
+function set_all_player_map(player_list){
+	player_list.forEach(function(player){
+		all_player_info[player.playerId] = player
+	})
+	console.log(all_player_info["artero01"]["playerName"])
+}
+
+
 // 지금 드래프트 중인 선수
 function get_player_on_bid_from_api(){
 	var url = '/rest/player/getUndraftPlayer/' + gm_info.season;

@@ -17,25 +17,33 @@ public class DraftSequenceService {
     private final DraftInfoService draftInfoService;
 
     private DraftInfo draftInfo;
+    private int season;
 
     private int timeLeft;
 
     private boolean onDraft;
 
+    public void setDraftInfoBySeason(int season){
+        this.draftInfo = draftInfoService.findDraftInfo(season);
+    }
+    public void setOnDraft(boolean onDraft) {
+        this.onDraft = onDraft;
+    }
 
     public void draftProcessor() throws InterruptedException {
         if(onDraft){
-            while(timeLeft>0){
+            if(timeLeft>0){
                 Thread.sleep(1000);
                 timeLeft = timeLeft-1;
+                draftProcessor();
             }
-            if(timeLeft<=0){
+            else{
                 nextProcess();
             }
 
         }
         else{
-
+            System.out.println("드래프트 진행중이 아님");
         }
     }
 

@@ -1,5 +1,14 @@
 function place_bid(draft_info){
-    // console.log("ㅇㅇㅇ")
+
+    var body = Object()
+    body["season"] =
+    body["pick"] =
+    body["playerId"] =
+    body["bidTeam"] =
+    body["bidPlayer"] =
+    body["bidPrice"] =
+    body["nominate"] = false
+
     // console.log(draft_info)
     // console.log(draft_info.OfficialPlayerRating.playerName)
     // console.log(draft_info.playerName)

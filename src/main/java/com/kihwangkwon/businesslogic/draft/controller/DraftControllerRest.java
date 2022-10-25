@@ -20,13 +20,6 @@ public class DraftControllerRest {
 
 	private final DraftService draftService;
 
-	private boolean drafteeSelect;
-	private boolean duringAuction;
-
-	private String playerName;
-
-	private int timeRest;
-
 	@RequestMapping("/login")
 	public boolean draftLogin(@RequestBody DraftTeam draftTeam) {
 		return draftService.login(draftTeam);
@@ -44,25 +37,6 @@ public class DraftControllerRest {
 		// draftService.draftFinish(season);
 	}
 
-	@RequestMapping("/drafting")
-	public void draft() {
-		// Timer draftTimer = new Timer("Timer");
-		while (drafteeSelect) {
-
-			/*
-			 * Timer timer = new Timer();
-			 */
-//			timer.start();
-
-			System.out.println("셀렉트중");
-		}
-		while (duringAuction) {
-			System.out.println("옥션중");
-		}
-		if (!drafteeSelect) {
-			System.out.println("꺼짐1");
-		}
-	}
 
 	@RequestMapping("/draft/bid")
 	public void boolTest(@RequestBody DraftBid draftBid) {

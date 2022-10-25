@@ -33,6 +33,7 @@ public class DraftServiceImpl implements DraftService {
 	private final DraftBidRepository draftBidRepository;
 	private final DraftTeamRepository draftTeamRepository;
 	private final DraftInfoRepository draftInfoRepository;
+
 	private final DraftResultRepository draftResultRepository;
 	private final OfficialPlayerRatingRepository officialPlayerRatingRepository;
 	

@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -23,8 +22,8 @@ public class PlayerServiceImpl implements PlayerService {
 	
 	@Override
 	public List<OfficialPlayerRating> getAllPlayer(String season) {
-		// TODO Auto-generated method stub
-		return null;
+		int intSeason = Integer.parseInt(season);
+		return officialPlayerRatingRepository.findBySeason(intSeason, null);
 	}
 
 	@Override
@@ -33,7 +32,13 @@ public class PlayerServiceImpl implements PlayerService {
 		int intSeason = Integer.parseInt(season);
 		
 		List<OfficialPlayerRating> allPlayer = officialPlayerRatingRepository.findBySeason(intSeason, null);
+		for(OfficialPlayerRating officialPlayerRating:allPlayer){
+			officialPlayerRating.setId(Long.parseLong("0"));
+		}
+
 		List<DraftBid> draftees = draftBidRepository.findBySeasonAndApproval(intSeason, true, null);
+		
+
 		
 		//드래프트 진행중인 애는 못가져오니까 따로 검색해서 추가
 		DraftBid lastBidPlayer = draftBidRepository.findFirstBySeasonOrderByIdDesc(intSeason,null);
