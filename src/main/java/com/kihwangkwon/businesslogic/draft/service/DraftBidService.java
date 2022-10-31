@@ -6,6 +6,7 @@ import com.kihwangkwon.businesslogic.draft.domain.DraftNominate;
 import com.kihwangkwon.businesslogic.draft.domain.DraftResult;
 import com.kihwangkwon.businesslogic.draft.repository.DraftBidRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class DraftBidService {
 
     private final DraftResultService draftResultService;
 
-    private final DraftNomianteService draftNomianteService;
+    private final DraftNominateService draftNomianteService;
 
     private final DraftInfoService draftInfoService;
 
@@ -127,4 +128,10 @@ public class DraftBidService {
         draftNomianteService.updateNominateStatus(draftBid);
         return draftBid;
     }
+
+    public DraftBid findLatestBid(String season){
+        int seasonInteger = Integer.parseInt(season);
+        return draftBidRepository.findFirstBySeasonOrderByCreatedDateDesc(seasonInteger);
+    }
+
 }

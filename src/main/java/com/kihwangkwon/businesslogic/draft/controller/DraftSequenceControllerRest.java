@@ -20,6 +20,11 @@ public class DraftSequenceControllerRest {
     @PostMapping("/starter")
     public void draftProcessStarter(){
         draftSequenceService.setOnDraft(true);
+        try{
+            draftSequenceService.draftProcessor();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @PostMapping("/break")
@@ -27,6 +32,8 @@ public class DraftSequenceControllerRest {
         draftSequenceService.setOnDraft(false);
     }
 
+
+    @PostMapping("/")
 
     @GetMapping("/timeLeft")
     public int getLeftTime(){

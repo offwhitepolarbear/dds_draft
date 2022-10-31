@@ -12,9 +12,13 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class DraftResultService {
-    DraftResultRepository draftResultRepository;
+    private final DraftResultRepository draftResultRepository;
 
-    List<DraftResult> findDraftResultBySeasonAndTeam(int season, String team){
+    public List<DraftResult> findAllDraftResult(String season){
+        int seasonInteger = Integer.parseInt(season);
+        return draftResultRepository.findBySeason(seasonInteger);
+    }
+    public List<DraftResult> findDraftResultBySeasonAndTeam(int season, String team){
         return draftResultRepository.findBySeasonAndDraftTeam(season,team);
     }
 

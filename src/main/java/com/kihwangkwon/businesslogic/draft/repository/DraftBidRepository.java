@@ -28,6 +28,8 @@ public interface DraftBidRepository extends JpaRepository<DraftBid, Long> {
 	//비딩 중인 애 찾기
 	DraftBid findFirstBySeasonOrderByIdDesc(int season, Sort sort);
 
+	DraftBid findFirstBySeasonOrderByCreatedDateDesc(int season);
+
 	DraftBid findFirstBySeasonAndPlayerIdOrderByBidPriceDesc(int season, String playerId);
 
 }

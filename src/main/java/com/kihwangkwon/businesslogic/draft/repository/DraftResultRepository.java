@@ -9,4 +9,6 @@ public interface DraftResultRepository extends JpaRepository<DraftResult, Long> 
     List<DraftResult> findBySeason(int season);
 
     List<DraftResult> findBySeasonAndDraftTeam(int season, String draftTeam);
+
+    DraftResult findFirstBySeasonOrderByCreatedDateDesc(int season);
 }

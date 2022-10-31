@@ -4,12 +4,15 @@ import com.kihwangkwon.businesslogic.draft.domain.DraftBid;
 import com.kihwangkwon.businesslogic.draft.domain.DraftNominate;
 import com.kihwangkwon.businesslogic.draft.domain.enumerate.DraftNominateStatus;
 import com.kihwangkwon.businesslogic.draft.repository.DraftNominateRepository;
+import com.kihwangkwon.businesslogic.team.domain.TeamTag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
-public class DraftNomianteService {
+public class DraftNominateService {
     private final DraftNominateRepository draftNominateRepository;
 
     public DraftNominate findNominateByBid(DraftBid draftBid){
@@ -23,6 +26,23 @@ public class DraftNomianteService {
         draftNominate.setDraftNominateStatus(DraftNominateStatus.SUCCESSFUL_BID);
         draftNominate = draftNominateRepository.save(draftNominate);
         return draftNominate;
+    }
+
+    public TeamTag findNextNominator(int season){
+        DraftNominate lastNominate = draftNominateRepository.findFirstBySeasonOrderByCreatedDateDesc(season);
+        if (lastNominate == null){
+
+        }
+        return TeamTag.ATL;
+    }
+
+    public List getAllNominate(String season){
+        int seasonInteger = Integer.parseInt(season);
+        return draftNominateRepository.findBySeasonOrOrderByCreatedDateDesc(seasonInteger);
+    }
+
+    public TeamTag findNextNominator(String season){
+        return null;
     }
 
 }

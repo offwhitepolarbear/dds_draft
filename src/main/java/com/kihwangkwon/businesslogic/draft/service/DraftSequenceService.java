@@ -19,12 +19,17 @@ public class DraftSequenceService {
     private DraftInfo draftInfo;
     private int season;
 
+
+    private int bidTime;
+    private int nominateTime;
     private int timeLeft;
 
     private boolean onDraft;
 
     public void setDraftInfoBySeason(int season){
         this.draftInfo = draftInfoService.findDraftInfo(season);
+        this.bidTime = this.draftInfo.getBidTime();
+        this.nominateTime = this.draftInfo.getNominateTime();
     }
     public void setOnDraft(boolean onDraft) {
         this.onDraft = onDraft;
