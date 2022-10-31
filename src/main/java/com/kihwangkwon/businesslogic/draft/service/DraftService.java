@@ -5,6 +5,7 @@ import com.kihwangkwon.businesslogic.draft.domain.DraftTeam;
 import com.kihwangkwon.businesslogic.draft.domain.response.DraftTeamInfo;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,6 +18,24 @@ public class DraftService {
     private final DraftInfoService draftInfoService;
     private final DraftResultService draftResultService;
     private final DraftTeamService draftTeamService;
+
+    public boolean login(DraftTeam draftTeam) {
+
+        boolean result = false;
+
+        int season = draftTeam.getSeason();
+        String teamName = draftTeam.getTeamName();
+        String password = draftTeam.getPassword();
+
+        draftTeam = draftTeamService.findDraftTeam(season, teamName, password);
+
+        //로그인 확인 된 경우
+        if(draftTeam!=null) {
+            result = true;
+        }
+
+        return result;
+    }
 
     public List<DraftTeamInfo> bidableTeamList(String season){
         List<DraftTeamInfo> draftTeamInfoList = new ArrayList<>();
@@ -41,5 +60,10 @@ public class DraftService {
             draftTeamInfoList.add(draftTeamInfo);
         }
             return draftTeamInfoList;
+    }
+
+    private Sort draftTeamSort() {
+        Sort sort = Sort.by(Sort.Order.asc("pick"));
+        return sort;
     }
 }

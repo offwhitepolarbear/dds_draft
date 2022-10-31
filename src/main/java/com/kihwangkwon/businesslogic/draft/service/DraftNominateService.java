@@ -38,7 +38,7 @@ public class DraftNominateService {
 
     public List getAllNominate(String season){
         int seasonInteger = Integer.parseInt(season);
-        return draftNominateRepository.findBySeasonOrOrderByCreatedDateDesc(seasonInteger);
+        return draftNominateRepository.findBySeasonOrderByCreatedDateDesc(seasonInteger);
     }
 
     public TeamTag findNextNominator(String season){

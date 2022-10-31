@@ -16,4 +16,8 @@ public class DraftTeamService {
         int seasonInt = Integer.parseInt(season);
         return draftTeamRepository.findBySeason(seasonInt);
     }
+
+    public DraftTeam findDraftTeam(int season, String teamName,String password){
+        return draftTeamRepository.findBySeasonAndTeamNameAndPassword(season, teamName, password);
+    }
 }

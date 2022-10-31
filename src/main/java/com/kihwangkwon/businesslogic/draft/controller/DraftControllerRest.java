@@ -38,24 +38,5 @@ public class DraftControllerRest {
 	}
 
 
-	@RequestMapping("/draft/bid")
-	public void boolTest(@RequestBody DraftBid draftBid) {
-		draftService.bid(draftBid);
-	}
-
-	@RequestMapping("/drafting3")
-	public void boolTest3() {
-		draftService.bidTimer();
-	}
-
-	@RequestMapping("/getRemainTime")
-	public int getRemainTime(){
-		return draftService.getBidTimeLeft();
-	}
-	
-	@RequestMapping("/getDraftTeams/{stringSeason}")
-	public List<DraftTeam> getDraftTeams(@PathVariable("stringSeason") String stringSeason){
-		return draftService.getDraftTeams(stringSeason);
-	}
 	
 }

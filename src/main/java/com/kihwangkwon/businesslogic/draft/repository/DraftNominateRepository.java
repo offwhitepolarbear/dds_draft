@@ -10,5 +10,5 @@ public interface DraftNominateRepository extends JpaRepository<DraftNominate, Lo
 
     DraftNominate findFirstBySeasonOrderByCreatedDateDesc(int season);
 
-    List<DraftNominate> findBySeasonOrOrderByCreatedDateDesc(int season);
+    List<DraftNominate> findBySeasonOrderByCreatedDateDesc(int season);
 }
