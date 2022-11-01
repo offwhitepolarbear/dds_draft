@@ -10,5 +10,7 @@ import com.kihwangkwon.businesslogic.draft.domain.DraftTeam;
 public interface DraftTeamRepository extends JpaRepository<DraftTeam, Long> {
 	DraftTeam findBySeasonAndTeamNameAndPassword(int season, String teamName, String password);
 	List<DraftTeam> findBySeason(int season);
+	List<DraftTeam> findBySeasonOrderByPick(int season);
 	List<DraftTeam> findBySeasonAndBiddable(int season, boolean biddable, Sort sort);
+
 }

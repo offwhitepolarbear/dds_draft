@@ -42,7 +42,7 @@ public class DraftService {
 
         int seasonInt = Integer.parseInt(season);
         DraftInfo draftInfo = draftInfoService.findDraftInfo(seasonInt);
-        List<DraftTeam> draftTeamList = draftTeamService.findDraftTeam(season);
+        List<DraftTeam> draftTeamList = draftTeamService.findDraftTeamList(season);
 
         for(DraftTeam draftTeam: draftTeamList){
             List<DraftResult> draftResultList = draftResultService.findDraftResultBySeasonAndTeam(seasonInt, draftTeam.getTeamName());

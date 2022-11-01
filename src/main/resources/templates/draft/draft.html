@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="/app/css/draft/draft_00.css">
+<link rel="stylesheet" href="/library/bootstrap-5.2.2-dist/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/app.css.draft/draft_00.css">
+
 <head>
 <meta charset="UTF-8">
 <title>테스트 페이지</title>
@@ -8,6 +11,17 @@
 <body>
 <div class="container">
     <input type="number">
+    <div class="row">
+        <div id="team_info_left" class="col">
+
+        </div>
+
+        <div id="team_info_right" class="col">
+
+        </div>
+    </div>
+
+
         <table>
             <th>구단</th> <th>1라운드</th> <th>2라운드</th><th>3라운드</th> <th>4라운드</th><th>5라운드</th> <th>6라운드</th>
             <tr class="team1"><!-- 첫번째 줄 시작 -->
@@ -113,9 +127,42 @@
         <div>15</div>
     </div>
     <input type="number">
+
+    <div style="width: 30%">
+
+        <button type="button" class="btn btn-outline-primary">Primary</button>
+
+
+    </div>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+                1 of 2
+            </div>
+            <div class="col alert-primary">
+
+                        2 of 2
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                1 of 3
+            </div>
+            <div class="col">
+                2 of 3
+            </div>
+            <div class="col">
+                3 of 3
+            </div>
+        </div>
+    </div>
+
+
+
+
 </div>
 </body>
-
+<script type="text/javascript" src="/library/bootstrap-5.2.2-dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src='/app/js/draft/draft.js'></script>
 
 <script type="text/javascript" src='/app/js/draft/draft_00_status.js'></script>
@@ -123,6 +170,7 @@
 <script type="text/javascript" src='/app/js/draft/draft_02_player.js'></script>
 <script type="text/javascript" src='/app/js/draft/draft_03_bid.js'></script>
 <script type="text/javascript" src='/app/js/draft/draft_04_draft_info.js'></script>
+<script type="text/javascript" src='/app/js/draft/draft_05_team_info.js'></script>
 <script type="text/javascript" src='/app/js/draft/draft_09_result_display.js'></script>
 
 </html>

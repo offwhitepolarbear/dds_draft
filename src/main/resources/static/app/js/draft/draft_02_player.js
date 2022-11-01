@@ -7,7 +7,7 @@
  * 지금 접속중인 애들 명단
  * */
 function get_draft_teams_from_api(){
-	var url = "/draft/getDraftTeams/" + gm_info.season;
+	var url = "/draft/team/getDraftTeams/" + gm_info.season;
 	fetch(url, 
 			{
 			  method: 'GET', // or 'PUT'
@@ -22,7 +22,7 @@ function get_draft_teams_from_api(){
 
 function set_draft_teams(teams){
 	console.log(teams)
-	
+	set_team_main_info(teams)
 }
 
 function get_all_player(){
