@@ -61,14 +61,16 @@ function loginCheck(response){
 
 		// 팀 정보
 		get_draft_teams_from_api()
-		
+
+		// 언드래프티 할당
+		get_undraftee_from_api()
+
+
 		// 지금 드래프트 중인 선수
 		get_player_on_bid_from_api()
 		// 남은 시간
 		get_rest_draft_time_from_api()
-		
-		// 전체 남은 선수
-		get_rest_player_from_api()
+
 		// 드래프트 된 선수
 		get_dratee_from_api()
 		

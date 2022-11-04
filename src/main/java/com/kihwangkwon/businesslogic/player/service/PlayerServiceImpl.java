@@ -31,7 +31,7 @@ public class PlayerServiceImpl implements PlayerService {
 		
 		int intSeason = Integer.parseInt(season);
 		
-		List<OfficialPlayerRating> allPlayer = officialPlayerRatingRepository.findBySeason(intSeason, null);
+		List<OfficialPlayerRating> allPlayer = officialPlayerRatingRepository.findBySeasonOrderByOverallDesc(intSeason);
 		for(OfficialPlayerRating officialPlayerRating:allPlayer){
 			officialPlayerRating.setId(Long.parseLong("0"));
 		}
