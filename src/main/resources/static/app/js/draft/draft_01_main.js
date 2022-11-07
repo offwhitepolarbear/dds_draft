@@ -1,32 +1,27 @@
-var host_url_full = window.location.href;
+let host_url_full = window.location.href;
 
 host_url_full = host_url_full.split('/');
 
 const socket_url = "ws://"+host_url_full[2]+"/socket";
 
-var info_uri = window.location.pathname;
+let info_uri = window.location.pathname;
 
 info_uri = info_uri.split('/')
 
-var gm_info = new Object();
+
 gm_info.season = info_uri[2];
 gm_info.teamName = info_uri[3];
 gm_info.password = info_uri[4];
 
-var test_data = new Object();
-
-var draft_chat = new Object();
-var draft_bid = new Object();
-
-var websocket;
+let websocket;
 
 
 gm_login()
 
 function gm_login(){
-	console.log(gm_info);
-		var login_url = '/draft/login';
-		var data = gm_info;
+
+		let login_url = '/draft/login';
+		let data = gm_info;
 		fetch(login_url, 
 			{
 			  method: 'POST', // or 'PUT'
@@ -64,7 +59,6 @@ function loginCheck(response){
 
 		// 언드래프티 할당
 		get_undraftee_from_api()
-
 
 		// 지금 드래프트 중인 선수
 		get_player_on_bid_from_api()
@@ -108,12 +102,11 @@ function socket_connect(gm_info){
 
 
 function message_handler(message){
-	var message_json = JSON.parse(message.data)
-	var message_type = message_json.socketMessageType
-	var message_object = message_json.object
+	let message_json = JSON.parse(message.data)
+	let message_type = message_json.socketMessageType
+	let message_object = message_json.object
 	console.log(message_type)
 	if (message_type == "PLACE_BID"){
 		adjust_place_bid_result(message_object)
 	}
 }
-// var websocket = new WebSocket(socket_url);

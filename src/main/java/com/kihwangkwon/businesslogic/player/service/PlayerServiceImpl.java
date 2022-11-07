@@ -37,9 +37,7 @@ public class PlayerServiceImpl implements PlayerService {
 		}
 
 		List<DraftBid> draftees = draftBidRepository.findBySeasonAndApproval(intSeason, true, null);
-		
 
-		
 		//드래프트 진행중인 애는 못가져오니까 따로 검색해서 추가
 		DraftBid lastBidPlayer = draftBidRepository.findFirstBySeasonOrderByIdDesc(intSeason,null);
 		draftees.add(lastBidPlayer);

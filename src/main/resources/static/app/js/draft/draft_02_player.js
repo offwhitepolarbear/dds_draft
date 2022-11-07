@@ -4,7 +4,7 @@
  * 지금 접속중인 애들 명단
  * */
 function get_draft_teams_from_api(){
-	var url = "/draft/team/getDraftTeams/" + gm_info.season;
+	let url = "/draft/team/getDraftTeams/" + gm_info.season;
 	fetch(url, 
 			{
 			  method: 'GET', // or 'PUT'
@@ -23,7 +23,7 @@ function set_draft_teams(teams){
 }
 
 function get_all_player(){
-	var url = '/rest/player/getAllPlayer/' + gm_info.season;
+	let url = '/rest/player/getAllPlayer/' + gm_info.season;
 	fetch(url,
 		{
 			method: 'GET',
@@ -47,7 +47,7 @@ function set_all_player_map(player_list){
 
 // 지금 드래프트 중인 선수
 function get_player_on_bid_from_api(){
-	var url = '/rest/player/getUndraftPlayer/' + gm_info.season;
+	let url = '/rest/player/getUndraftPlayer/' + gm_info.season;
 	fetch(url, 
 			{
 			  method: 'GET', // or 'PUT'
@@ -65,29 +65,10 @@ function set_player_on_bid(player_json){
 	console.log(player_json)
 }
 
-// 남은 시간
-function get_rest_draft_time_from_api(){
-	var url = "/draft/getRemainTime"
-	fetch(url, 
-			{
-			  method: 'GET', // or 'PUT'
-			  headers:{
-			    'Content-Type': 'application/json'
-			  }
-			}
-		)
-		.then(res => res.json())
-		.then(response_json => set_rest_draft_time(response_json))
-			
-}
-
-function set_rest_draft_time(time){
-	console.log(time)
-}
 
 // 전체 남은 선수
 function get_undraftee_from_api(){
-	var url = '/rest/player/getUndraftPlayer/' + gm_info.season;
+	let url = '/rest/player/getUndraftPlayer/' + gm_info.season;
 	fetch(url,
 		{
 			method: 'GET', // or 'PUT'
@@ -142,7 +123,8 @@ function player_sort_overall_desc(undraft_players){
 
 // 드래프트 된 선수
 function get_dratee_from_api(){
-	var url = "/draft/getRemainTime"
+	console.log("draftees")
+	let url = "/draft/palyer/result/"+gm_info.season
 		fetch(url, 
 				{
 				  method: 'GET', // or 'PUT'
@@ -152,10 +134,11 @@ function get_dratee_from_api(){
 				}
 			)
 			.then(res => res.json())
-			.then(response_json => set_rest_draft_time(response_json))
+			.then(response_json => set_draftee(response_json))
 }
 
 function set_draftee(draftee_json){
+	console.log(draftee_json)
 	draftee_json.forEach(function(draftee){
 		console.log(draftee)
 	})
@@ -165,7 +148,8 @@ function check_nominate_player(player_id){
 	let selectable = document.getElementById(player_id).getAttribute("value")
 	if (selectable){
 		let player_info = all_player_info[player_id]
-		let confirm_event = confirm(player_info["playerName"]+ "을 입찰 후보로 올립니다.")
+		let bid_price = document.getElementById("bid_price").value
+		let confirm_event = confirm(player_info["playerName"]+ "을 "+ bid_price + " 달러에 입찰 후보로 올립니다.")
 		if (confirm_event) {
 			alert(player_info["playerName"]+'후보로 올림')
 			nominate_player(player_id)

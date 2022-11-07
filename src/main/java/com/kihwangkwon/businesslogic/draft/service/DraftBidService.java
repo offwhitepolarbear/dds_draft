@@ -6,7 +6,6 @@ import com.kihwangkwon.businesslogic.draft.domain.DraftNominate;
 import com.kihwangkwon.businesslogic.draft.domain.DraftResult;
 import com.kihwangkwon.businesslogic.draft.repository.DraftBidRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -112,8 +111,12 @@ public class DraftBidService {
     }
 
     public DraftBid placeBid(DraftBid draftBid){
-        draftBid = draftBidRepository.save(draftBid);
-        return draftBid;
+        DraftBid result = null;
+        if(checkBidapproval(draftBid)){
+            draftBid = draftBidRepository.save(draftBid);
+            result = draftBid;
+        }
+        return result;
     }
 
     public boolean checkAbleBidSuccess(DraftBid draftBid){

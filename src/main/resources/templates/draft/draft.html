@@ -10,26 +10,30 @@
 </head>
 <body>
 <div class="container">
-    <div class="row" id="nominate">
-        <div class="col" id="bid_info"></div>
-        <div class="col" id="bid_player_info"></div>
+    <div class="row" id="on_bid">
+        <div class="col-2">
+            <i class="fa fa-clock-o fa-5x" aria-hidden="true" id="draft_timer">
+                10
+            </i>
+        </div>
+        <div class="col-2" >
+            <i class="fa fa-usd fa-5x" aria-hidden="true" id="last_bid_price">
+                5
+            </i>
+        </div>
+        <div class="col-3" id="last_bid_team">
+
+        </div>
+        <div class="col-5" id="bid_player_info"></div>
     </div>
-<!--    <div class="card" id="bidding_info">-->
-<!--        <div class="card-body">-->
-<!--            <h5 class="card-title">선수이름</h5>-->
-<!--            <h6 class="card-subtitle mb-2 text-muted">가격 15$</h6>-->
-<!--            <p class="card-text">팀 어디임</p>-->
-<!--            <p class="card-text">15초 남음</p>-->
-<!--        </div>-->
-<!--    </div>-->
     <div class="card">
         <div class="row" id="my_bid" >
             <div class="col">
-                <input type="number" class="form-control">
+                <input type="number" class="form-control" id="bid_price">
 
             </div>
             <div class="col">
-                <button type="button" class="btn btn-outline-primary" style="width: 50%">입찰</button>
+                <button type="button" class="btn btn-outline-primary" style="width: 50%" onclick="place_bid()">입찰</button>
             </div>
             <div class="col"></div>
             <div class="col"></div>
