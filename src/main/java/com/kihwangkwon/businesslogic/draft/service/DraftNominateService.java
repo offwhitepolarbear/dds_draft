@@ -5,7 +5,11 @@ import com.kihwangkwon.businesslogic.draft.domain.DraftNominate;
 import com.kihwangkwon.businesslogic.draft.domain.enumerate.DraftNominateStatus;
 import com.kihwangkwon.businesslogic.draft.repository.DraftNominateRepository;
 import com.kihwangkwon.businesslogic.team.domain.TeamTag;
+import com.kihwangkwon.socket.SocketEndPoint;
+import com.kihwangkwon.socket.SocketMessageService;
+import com.kihwangkwon.socket.domain.SocketMessageType;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,4 +49,7 @@ public class DraftNominateService {
         return null;
     }
 
+    public DraftNominate saveNominate(DraftNominate draftNominate){
+        return draftNominateRepository.save(draftNominate);
+    }
 }

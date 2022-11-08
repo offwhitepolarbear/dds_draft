@@ -5,7 +5,10 @@ import com.kihwangkwon.businesslogic.draft.domain.DraftInfo;
 import com.kihwangkwon.businesslogic.draft.domain.DraftNominate;
 import com.kihwangkwon.businesslogic.draft.domain.DraftResult;
 import com.kihwangkwon.businesslogic.draft.repository.DraftBidRepository;
+import com.kihwangkwon.socket.SocketMessageService;
+import com.kihwangkwon.socket.domain.SocketMessageType;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +21,7 @@ public class DraftBidService {
 
     private final DraftResultService draftResultService;
 
-    private final DraftNominateService draftNomianteService;
+    private final DraftNominateService draftNominateService;
 
     private final DraftInfoService draftInfoService;
 
@@ -30,7 +33,7 @@ public class DraftBidService {
         boolean highestBid = false;
 
         // 선수가 현재 비딩 대상인지 확인 playerId, season, bid상태로 검사함
-        DraftNominate draftNominate = draftNomianteService.findNominateByBid(draftBid);
+        DraftNominate draftNominate = draftNominateService.findNominateByBid(draftBid);
         if (draftNominate != null){
             // 비딩 대상이고 비드와 동일할 때
                 checkNominated = true;
@@ -128,13 +131,21 @@ public class DraftBidService {
     public DraftBid successBid(DraftBid draftBid){
         draftBid.setApproval(true);
         draftBid = draftBidRepository.save(draftBid);
-        draftNomianteService.updateNominateStatus(draftBid);
+        draftNominateService.updateNominateStatus(draftBid);
         return draftBid;
     }
 
     public DraftBid findLatestBid(String season){
         int seasonInteger = Integer.parseInt(season);
         return draftBidRepository.findFirstBySeasonOrderByCreatedDateDesc(seasonInteger);
+    }
+
+    public DraftNominate placeNominate(DraftBid draftBid){
+        this.placeBid(draftBid);
+        ModelMapper modelMapper = new ModelMapper();
+        DraftNominate draftNominate = modelMapper.map(draftBid, DraftNominate.class);
+        SocketMessageService.sendMessageToAll(SocketMessageType.NOMINATE, draftNominate);
+        return draftNominateService.saveNominate(draftNominate);
     }
 
 }

@@ -22,6 +22,7 @@ public class DraftNominate extends BaseTimeEntity {
     private int season;
     private String playerId;
     private int pick;
+    private String nominateTeam;
     private DraftNominateStatus draftNominateStatus;
 
 }

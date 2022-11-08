@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class SocketMessageService {
  	SocketEndPoint socketEndPoint;
 
-	 public void sendMessageToAll(SocketMessageType socketMessageType, Object message){
+	 public static void sendMessageToAll(SocketMessageType socketMessageType, Object message){
 		 String jsonString = null;
 
 		 SocketResponseDomain socketResponseDomain = new SocketResponseDomain();
@@ -27,7 +27,7 @@ public class SocketMessageService {
 			 throw new RuntimeException(e);
 		 }
 //		 System.out.println(jsonString);
-		 socketEndPoint.broadcast(jsonString);
+		 SocketEndPoint.broadcast(jsonString);
 	 }
 
 	private Map loginIdMap;

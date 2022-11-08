@@ -1,5 +1,5 @@
 function get_draft_info(season){
-    var url = '/draft/info/' + gm_info.season;
+    let url = '/draft/info/' + gm_info.season;
     fetch(url,
         {
             method: 'GET',
